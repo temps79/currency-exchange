@@ -46,11 +46,13 @@ public class CurrencyCache {
         return new ArrayList<>(valuteCursOnDateMap.values());
     }
 
+    /**
+     * Запрос актуального курса
+     */
     private List<ValuteCursOnDate> getValuteCursOnTodayByRequest() throws DatatypeConfigurationException {
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(new Date());
         lastUpdate = Instant.now().truncatedTo(ChronoUnit.DAYS);
-        log.info("Get info by cbr server");
         List<ValuteCursOnDate> valuteCursOnDates = currencyClient.getValuteCursOnDate(cal);
         valuteCursOnDateMap = valuteCursOnDates.stream().collect(Collectors.toMap(ValuteCursOnDate::getCode, valuteCursOnDate -> valuteCursOnDate));
         return valuteCursOnDates;

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import {Option, Select, ThemeProvider} from "@material-tailwind/react";
 import {ValuteCursOnDate} from "./CurrencyTypes";
@@ -6,7 +6,6 @@ import CurrencyApi from "./api/CurrencyApi";
 
 const CurrencyApp = () => {
     const [valutes, setValutes] = useState<ValuteCursOnDate[]>([])
-    const [lastUpdateTime, setLastUpdateTime] = useState(new Date())
     const [isLoading, setIsLoading] = useState(true)
     const [count, setCount] = useState(1)
     const [course, setCourse] = useState<ValuteCursOnDate | undefined | null>(null)

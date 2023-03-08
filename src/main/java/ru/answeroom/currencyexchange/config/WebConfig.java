@@ -8,11 +8,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer  {
+public class WebConfig implements WebMvcConfigurer {
     private final String INDEX_HTML = "index.html";
 
     @Override
@@ -20,6 +19,7 @@ public class WebConfig implements WebMvcConfigurer  {
         List<String> pageUrl = List.of("/");
         pageUrl.forEach(s -> registry.addViewController(s).setViewName(INDEX_HTML));
     }
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

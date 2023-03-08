@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class CurrencyClient extends WebServiceGatewaySupport {
 
     public List<ValuteCursOnDate> getValuteCursOnDate(GregorianCalendar cal) throws DatatypeConfigurationException {
-        List<String> allowedCodeValute=List.of("RUB","USD","EUR");
+        List<String> allowedCodeValute = List.of("RUB", "USD", "EUR");
         GetCursOnDateXMLResponse response = getCursOnDateXMLResponse(cal);
         final List<ValuteCursOnDate> courses = response.getGetCursOnDateXMLResult().getValuteData();
         return courses.stream()
@@ -31,7 +31,8 @@ public class CurrencyClient extends WebServiceGatewaySupport {
         XMLGregorianCalendar calendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
         request.setOnDate(calendar);
 
-        GetCursOnDateXMLResponse response = (GetCursOnDateXMLResponse) getResponse("http://www.cbr.ru/dailyinfowebserv/dailyinfo.asmx?wsdl", request);
+        final String soapAction = "http://www.cbr.ru/dailyinfowebserv/dailyinfo.asmx?wsdl";
+        GetCursOnDateXMLResponse response = (GetCursOnDateXMLResponse) getResponse(soapAction, request);
         if (response == null) {
             throw new IllegalStateException("Не удалось получить данные от ЦБ РФ");
         }
